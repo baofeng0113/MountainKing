@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<detail multiple="false">
+    <field column="pictures" name="图片地址" html="uploader" empty="false" type="string" description="请输入图片地址，上传请点击上传附件菜单"/>
+    <field column="uniprice" name="产品单价" html="text" empty="false" type="string" description="请输入产品单价，单价用于计算订单总价"/>
+    <field column="contents" name="产品简介" html="richtext" empty="false" type="string" description=""/>
+</detail>

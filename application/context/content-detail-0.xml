@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<detail multiple="false">
+    <field column="pubtime" name="发布时间" html="calendar" empty="true" type="string" description="如果此处为空则显示内容被创建的时间"/>
+    <field column="authors" name="文章作者" html="text" empty="true" type="string" description="如果此处为空则显示操作人的真实姓名"/>
+    <field column="content" name="文章内容" html="richtext" empty="false" type="string" description=""/>
+</detail>

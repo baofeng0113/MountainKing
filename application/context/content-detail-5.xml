@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<detail multiple="false">
+    <field column="location" empty="false" name="跳转地址" html="text" type="string" description="请输入页面跳转的目标地址"/>
+</detail>
