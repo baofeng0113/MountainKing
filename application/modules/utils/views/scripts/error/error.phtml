@@ -5,10 +5,10 @@
     <title>Runtime Exception</title>
 </head>
 <style type="text/css">
-*, body, html {
-    font-family: "Times New Roman", Tahoma, SimSun, Arial;
-    font-size: 12px;
-}
+    *, body, html {
+        font-family: "Times New Roman", Tahoma, SimSun, Arial;
+        font-size: 12px;
+    }
 </style>
 <body>
 <?php if (isset($this->exception)): ?>
@@ -24,6 +24,6 @@
 <pre
     style="padding:10px 5px; background:#fffff0;"><?php echo $this->escape(var_export($this->request->getParams(), true)) ?></pre>
 </p>
-<?php endif ?>
+    <?php endif ?>
 </body>
 </html>
