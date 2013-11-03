@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php if ($this->websiteHtmlTitle != "") {?><?php echo $this->websiteHtmlTitle?>&nbsp;-&nbsp;MountainKing&nbsp;Control&nbsp;Panel<?php } else {?>MountainKing&nbsp;Control&nbsp;Panel<?php }?></title>
+    <link type="text/css" rel="stylesheet" media="screen" href="<?php echo $this->baseUrl();?>/static/framework/bootstrap/css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" media="screen" href="<?php echo $this->baseUrl();?>/static/styles/admin/controlpanel.css"/>
+    <link href="<?php echo $this->baseUrl();?>/static/favicon.ico" type="image/x-icon" rel="shortcut icon"/>
+    <link href="<?php echo $this->baseUrl();?>/static/favicon.ico" type="image/x-icon" rel="bookmark"/>
+    <script charset="utf-8" type="text/javascript" src="<?php echo $this->baseUrl();?>/static/js/jquery.min.js"></script>
+    <script charset="utf-8" type="text/javascript" src="<?php echo $this->baseUrl();?>/static/framework/bootstrap/js/bootstrap.min.js"></script>
+    <?php if ($this->adminAccreditList !== null) { ?>
+    <script type="text/javascript">
+    var menuMap = {
+            "administrator":[<?php if (in_array("administrator-view", $this->adminAccreditList)) { ?>
+                             {"name":"查看管理员账户", "link":"<?php echo $this->url(array("module" => "admin", "controller" => "administrator", "action" => "list"), null, true);?>"},
+                             <?php }?>
+                             <?php if (in_array("administrator-view", $this->adminAccreditList)) { ?>
+                             {"name":"查看登录日志", "link":"<?php echo $this->url(array("module" => "admin", "controller" => "administrator", "action" => "loginlog"), null, true);?>"},
+                             <?php }?>
+                             <?php if (in_array("administrator-add", $this->adminAccreditList)) { ?>
+                             {"name":"新增管理员账户", "link":"<?php echo $this->url(array("module" => "admin", "controller" => "administrator", "action" => "create"), null, true);?>"}
+                             <?php }?>], 
+            "category":[<?php if (in_array("category-view", $this->adminAccreditList)) { ?>
+                        {"name":"查看网站栏目", "link":"<?php echo $this->url(array("module" => "admin", "controller" => "category", "action" => "list"), null, true);?>"},
+                        <?php }?>
+                        <?php if (in_array("category-view", $this->adminAccreditList)) { ?>
+                        {"name":"新增网站栏目", "link":"<?php echo $this->url(array("module" => "admin", "controller" => "category", "action" => "create"), null, true);?>"}
+                        <?php }?>], 
+            "controlpanel":[<?php if (in_array("controlpanel-navigat", $this->adminAccreditList)) { ?>
+                            {"name":"管理网站导航", "link":"<?php echo $this->url(array("module" => "admin", "controller" => "controlpanel", "action" => "navigat"), null, true);?>"},
+                            <?php }?>
+                            <?php if (in_array("controlpanel-setting", $this->adminAccreditList)) { ?>
+                            {"name":"管理系统配置", "link":"<?php echo $this->url(array("module" => "admin", "controller" => "controlpanel", "action" => "setting"), null, true);?>"},
+                            <?php }?>
+                            <?php if (in_array("controlpanel-viewlog", $this->adminAccreditList)) { ?>
+                            {"name":"查看错误日志", "link":"<?php echo $this->url(array("module" => "admin", "controller" => "controlpanel", "action" => "viewlog"), null, true);?>"}
+                            <?php }?>],
+            "contents":[<?php if (in_array("contents-view", $this->adminAccreditList)) { ?>
+                        {"name":"查看网站内容", "link":"<?php echo $this->url(array("module" => "admin", "controller" => "contents", "action" => "list"), null, true);?>"}, 
+                        <?php }?>
+                        <?php if (in_array("contents-publish", $this->adminAccreditList)) { ?>
+                        {"name":"网站内容审核&nbsp;<span class='label label-warning'><?php echo $this->unpublicContentsNums;?>&nbsp;条待审核</span>", "link":"<?php echo $this->url(array("module" => "admin", "controller" => "contents", "action" => "publish"), null, true);?>"},
+                        <?php }?>
+                        <?php if (in_array("contents-add", $this->adminAccreditList)) { ?>
+                        {"name":"新增网站内容", "link":"<?php echo $this->url(array("module" => "admin", "controller" => "contents", "action" => "create"), null, true);?>"},
+                        <?php }?>
+                        <?php if (in_array("attachment-view", $this->adminAccreditList)) { ?>
+                        {"name":"查看网站附件", "link":"<?php echo $this->url(array("module" => "admin", "controller" => "attachment", "action" => "list"), null, true);?>"}, 
+                        <?php }?>
+                        <?php if (in_array("attachment-add", $this->adminAccreditList)) { ?>
+                        {"name":"附件上传操作", "link":"xxx"}, 
+                        <?php }?>
+                        <?php if (in_array("links-view", $this->adminAccreditList)) { ?>
+                        {"name":"查看友情链接", "link":"<?php echo $this->url(array("module" => "admin", "controller" => "links", "action" => "list"), null, true);?>"}, 
+                        <?php }?>
+                        <?php if (in_array("links-add", $this->adminAccreditList)) { ?>
+                        {"name":"新增友情链接", "link":"<?php echo $this->url(array("module" => "admin", "controller" => "links", "action" => "create"), null, true);?>"}, 
+                        <?php }?>
+                        <?php if (in_array("comment-view", $this->adminAccreditList)) { ?>
+                        {"name":"查看内容评论", "link":"<?php echo $this->url(array("module" => "admin", "controller" => "comment", "action" => "list"), null, true);?>"}, 
+                        <?php }?>
+                        <?php if (in_array("comment-publish", $this->adminAccreditList)) { ?>
+                        {"name":"内容评论审核&nbsp;<span class='label label-warning'><?php echo $this->unpublicCommentNums;?>&nbsp;条待审核</span>", "link":"<?php echo $this->url(array("module" => "admin", "controller" => "comment", "action" => "publish"), null, true);?>"}, 
+                        <?php }?>
+                        <?php if (in_array("keywords-view", $this->adminAccreditList)) { ?>
+                        {"name":"关键词组管理", "link":"<?php echo $this->url(array("module" => "admin", "controller" => "keywords", "action" => "list"), null, true);?>"}, 
+                        <?php }?>
+                        <?php if (in_array("manualedit-view", $this->adminAccreditList)) { ?>
+                        {"name":"静态区域管理", "link":"<?php echo $this->url(array("module" => "admin", "controller" => "manualedit", "action" => "list"), null, true);?>"}, 
+                        <?php }?>
+                        <?php if (in_array("manualedit-add", $this->adminAccreditList)) { ?>
+                        {"name":"新建静态区域", "link":"<?php echo $this->url(array("module" => "admin", "controller" => "manualedit", "action" => "create"), null, true);?>"}
+                        <?php }?>]
+    };
+    </script>
+    <?php } else {?>
+    var menuMap = {"administrator":[], "category":[], "contents":[], "controlpanel":[]};
+    <?php }?>
+</head>
+<body class="navbar-fixed">
+<div class="navbar navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="<?php echo $this->url(array("module" => "admin", "controller" => "index", "action" => "index"), null, true);?>">
+                <img src="<?php echo $this->baseUrl();?>/static/images/admin/controlpanel-logo.jpg"/>
+            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-inverse">
+            <ul class="nav navbar-nav navbar-left">
+                <li><a href="<?php echo $this->url(array("module" => "front", "controller" => "index", "action" => "index"), null, true);?>" target="_blank">网站首页</a></li>
+                <li><a href="javascript:initWindow('contents');">内容管理</a></li>
+                <li><a href="javascript:initWindow('category');">栏目管理</a></li>
+                <li><a href="javascript:initWindow('administrator');">管理员账户</a></li>
+                <li><a href="javascript:initWindow('controlpanel');">维护工具</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="navbar-text"><i class="glyphicon glyphicon-user"></i> <?php echo $this->trueName;?></li>
+                <li>
+                    <a href="<?php echo $this->url(array("module" => "admin", "controller" => "administrator", "action" => "password"), null, true);?>" target="frame">
+                        <i class="glyphicon glyphicon-lock"></i> 修改密码
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo $this->url(array("module" => "admin", "controller" => "logging", "action" => "logout"), null, true);?>"><i class="glyphicon glyphicon-log-out"></i> 退出</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container">
+	<div class="row container-main">
+		<div class="col-xs-2 container-menu">
+            <div class="menu">
+                <ul class="nav" id="menuPool">
+                    <li class="active"><a target="frame" href="<?php echo $this->url(array("module" => "admin", "controller" => "index", "action" => "admin"), null, true);?>">网站总览</a></li>
+                </ul>
+            </div>
+		</div>
+		<div class="col-xs-10 container-body">
+            <iframe src="<?php echo $this->url(array("module" => "admin", "controller" => "index", "action" => "admin"), null, true);?>" 
+                    id="controlpanel-frame" name="frame" marginwidth="0" scrolling="no" marginheight="0" 
+                    onload="javascript:this.height=frame.document.body.scrollHeight;" frameborder="0" width="100%"></iframe>
+		</div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+function initWindow(windowType) {
+    if (menuMap[windowType]) {
+        var menuHtml = "";
+        $("#menuPool").empty();
+        for (i = 0; i < menuMap[windowType].length; i++) {
+            menuHtml += "<li><a href='" + menuMap[windowType][i]["link"] + 
+            "' target='frame'><i class='glyphicon glyphicon-stop'></i> " + 
+            menuMap[windowType][i]["name"] + "</a></li>";
+        }
+        $("#menuPool").append(menuHtml);
+    }
+}
+</script>
+</html>
