@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php if ($this->websiteHtmlTitle != "") {?><?php echo $this->websiteHtmlTitle?>&nbsp;-&nbsp;MountainKing&nbsp;Control&nbsp;Panel<?php } else {?>MountainKing&nbsp;Control&nbsp;Panel<?php }?></title>
+    <link type="text/css" rel="stylesheet" media="screen" href="<?php echo $this->baseUrl();?>/static/framework/bootstrap/css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" media="screen" href="<?php echo $this->baseUrl();?>/static/styles/admin/controlpanel.css"/>
+    <link href="<?php echo $this->baseUrl();?>/static/favicon.ico" type="image/x-icon" rel="shortcut icon"/>
+    <link href="<?php echo $this->baseUrl();?>/static/favicon.ico" type="image/x-icon" rel="bookmark"/>
+    <script charset="utf-8" type="text/javascript" src="<?php echo $this->baseUrl();?>/static/js/jquery.min.js"></script>
+    <script charset="utf-8" type="text/javascript" src="<?php echo $this->baseUrl();?>/static/framework/bootstrap/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .controlpanel-login-foot a, .controlpanel-login-foot a:link, .controlpanel-login-foot a:visited {
+            text-decoration: none;
+            color: #d80069;
+            font-weight: 600;
+        }
+        
+        .controlpanel-login-foot a:hover {
+            text-decoration: underline;
+        }
+        
+        .controlpanel-login-form {
+            width: 284px;
+            margin: 10% auto 0;
+        }
+        
+        .controlpanel-login-form .input-margin {
+            margin-top: 10px;
+        }
+        
+        .controlpanel-login-foot {
+            height: 40px;
+            line-height: 40px;
+            margin: 0 auto;
+            color: #0073ea;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body style="background:#f7f7f7;">
+    <div class="container">
+        <form class="controlpanel-login-form" id="controlpanel-login-form">
+            <img src="<?php echo $this->baseUrl();?>/static/images/admin/controlpanel-login-logo.jpg"/>
+            <div class="input-group input-margin">
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-user"></span>
+                </span>
+                <input name="username" id="username" type="text" class="form-control input-xlarge" autocomplete="off" autofocus placeholder="Username"/>
+            </div>
+            <div class="input-group input-margin">
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-lock"></span>
+                </span>
+                <input name="password" id="password" type="password" class="form-control" placeholder="Password"/>
+            </div>
+            <a class="btn btn-lg btn-warning btn-block input-margin" id="controlpanel-login-auth"><strong>Log in</strong></a>
+        </form>
+        <p class="text-center controlpanel-login-foot">
+            Powered&nbsp;By&nbsp;<a href="https://github.com/NoteYun/MountainKing" target="_blank">MountainKing</a>&nbsp;2012-<?php echo date("Y");?>&nbsp;&copy;&nbsp;<a href="http://noteyun.com/" target="_blank">NoteYun.COM</a>
+        </p>
+    </div>
+</body>
+<script type="text/javascript">
+$("#username").focus(function() {
+    $("#controlpanel-login-auth").popover("destroy");
+    $("#username").popover("destroy");}
+);
+$("#password").focus(function() {
+    $("#controlpanel-login-auth").popover("destroy");
+    $("#password").popover("destroy");
+});
+$("#controlpanel-login-auth").click(function () {
+    var username = $.trim($("#username").val());
+    var password = $.trim($("#password").val());
+    if (username.length < 5 || username.length > 20) {
+        $("#username").popover({
+            placement:"right",
+            container:"body",
+            content:"您还没有输入用户名或用户名格式不正确"
+        });
+        $("#username").popover("show");
+        return false;
+    }
+    
+    if (password.length < 5 || password.length > 20) {
+        $("#password").popover({
+            placement:"right",
+            container:"body",
+            content:"您还没有输入密码或密码格式不正确"
+        });
+        $("#password").popover("show");
+        return false;
+    }
+
+    $.ajax({
+        data:$("#controlpanel-login-form").serialize(),
+        type:"post",
+        url:"<?php echo $this->url(array("module" => "admin", "controller" => "logging", "action" => "login"), null, true);?>",
+        success:function (transport) {
+            var response = jQuery.parseJSON(transport);
+            if (response.flag == false) {
+                $("#controlpanel-login-auth").popover({
+                    placement:"right",
+                    container:"body",
+                    content:response.text
+                });
+                $("#controlpanel-login-auth").popover("toggle");
+                return false;
+            } else {
+                window.location.href = "<?php echo $this->url(array("module" => "admin", "controller" => "index", "action" => "index"), null, true);?>";
+                return true;
+            }
+        }
+    });
+});
+$(function () {
+    $(".controlpanel-login-form").css({
+        "margin-top":function () {
+            return ($(window).height() - 350) / 2;
+        }
+    });
+});
+</script>
+</html>
