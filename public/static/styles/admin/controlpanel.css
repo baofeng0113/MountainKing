@@ -13,6 +13,96 @@ body {
     min-width: 1150px;
 }
 
+.dialog-content {
+    position: absolute;
+    z-index: 99999;
+    display: block;
+    margin: 0 auto;
+    left: 0; top: 0;
+    background-color: #ffffff;
+    border: 7px solid #dddddd;
+}
+
+.dialog-content .dialog-subject {
+    margin: 10px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.dialog-content .dialog-subject .title {
+    height: 30px;
+    line-height: 30px;
+    color: #737373;
+    font-size: 14px;
+    font-weight: 600;
+    float: left;
+    widht: 100px;
+}
+
+.dialog-content .dialog-subject .close {
+    height: 30px;
+    line-height: 30px;
+    color: #737373;
+    font-size: 14px;
+    font-weight: 400;
+    float: right;
+    widht: 30px;
+    text-decoration: none;
+}
+
+.dialog-content .dialog-subject .close>a, 
+.dialog-content .dialog-subject .close>a:visited
+.dialog-content .dialog-subject .close>a:link, 
+.dialog-content .dialog-subject .close>a:hover {
+    color: #737373;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.dialog-content .dialog-message {
+    line-height: 30px;
+    margin: 10px;
+    font-weight: 600;
+    color: #737373;
+    font-size: 14px;
+    overflow: auto;
+    text-align: center;
+}
+
+.dialog-content .dialog-buttons {
+    height: 30px;
+    line-height: 30px;
+    margin: 10px;
+    text-align: center;
+}
+
+.dialog-content .dialog-buttons>a {
+    padding: 0 15px;
+    text-decoration: none;
+}
+
+.dialog-content .dialog-buttons .dialog-button1, 
+.dialog-content .dialog-buttons .dialog-button2 {
+    margin: 0 10px;
+    background: -webkit-linear-gradient(top, #f3b500, #e87f14);
+    background: #f3b500;
+    background: -moz-linear-gradient(top, #f3b500, #e87f14);
+    cursor: pointer;
+    cursor: hand;
+    display: inline-block;
+    color: #ffffff;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, .15);
+    border-radius: 4px;
+}
+
+.dialog-content .dialog-buttons .dialog-button1 a:hover, 
+.dialog-content .dialog-buttons .dialog-button2 a:hover {
+    text-decoration: none;
+    background: #f2b215;
+    background: -moz-linear-gradient(top, #f2c822, #f29706);
+}
+
 body.navbar-fixed {padding-top: 50px;}
 
 .container {
@@ -181,4 +271,16 @@ body.navbar-fixed {padding-top: 50px;}
 
 .table-bordered>thead>tr>th, .table-bordered>thead>tr>td {
     border-bottom-width: 1px;
+}
+
+.panel-body {
+    padding-top:25px;
+}
+
+.table-bordered>thead>tr>th, .table-bordered>thead>tr>td {
+    border-bottom-width: 1px;
+}
+
+.control-label .help-block {
+    font-weight: 400;
 }
