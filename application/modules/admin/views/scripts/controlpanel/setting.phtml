@@ -1,0 +1,159 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" media="screen" href="<?php echo $this->baseUrl();?>/static/framework/bootstrap/css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" media="screen" href="<?php echo $this->baseUrl();?>/static/styles/admin/controlpanel.css"/>
+    <script charset="utf-8" type="text/javascript" src="<?php echo $this->baseUrl();?>/static/js/jquery.min.js"></script>
+    <script charset="utf-8" type="text/javascript" src="<?php echo $this->baseUrl();?>/static/framework/bootstrap/js/bootstrap.min.js"></script>
+    <script charset="utf-8" type="text/javascript" src="<?php echo $this->baseUrl();?>/static/js/admin/jquery.dialog.js"></script>
+    <script charset="utf-8" type="text/javascript" src="<?php echo $this->baseUrl();?>/static/js/admin/controlpanel.js"></script>
+</head>
+<body>
+<div class="row tabs-wrap">
+    <div class="col-xs-10">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="<?php echo $this->url(array("module" => "admin", "controller" => "controlpanel", "action" => "setting"), null, true);?>">管理系统配置</a></li>
+        </ul>
+    </div>
+</div>
+<form class="form-horizontal" role="form" id="setting-replace-form">
+<div class="panel panel-default">
+    <div class="panel-heading"><span class="glyphicon glyphicon-cog"></span> 网站信息配置</div>
+    <div class="panel-body">
+        <table class="table table-bordered table-striped">
+            <tbody>
+                <tr>
+                    <td width="300"><strong>TITLE-网站名称：</strong><br/><span class="help-block">请输入网站名称；例如：MountainKing Demo X.COM</span></td>
+                    <td>
+                        <div class="col-sm-8">
+                            <input value="<?php echo $this->configList['website_html_title'];?>" name="website_html_title" type="text" class="form-control" maxlength="100"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="300"><strong>网站是否关闭：</strong><br/><span class="help-block">如果需要对网站进行维护，请关闭网站避免数据异常</span></td>
+                    <td>
+                        <div class="col-sm-8">
+                            <label class="radio"><input type="radio" name="website_close_sign" value="1"<?php if ($this->configList['website_close_sign'] == '1') { ?> checked="checked"<?php }?> />是，网站关闭时前台所有页面将显示网站关闭提示</label>
+                            <label class="radio"><input type="radio" name="website_close_sign" value="0"<?php if ($this->configList['website_close_sign'] == '0') { ?> checked="checked"<?php }?> />否，正常提供服务</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="300"><strong>网站关闭提示：</strong><br/><span class="help-block">该信息将在网站关闭时对前台访问用户进行显示</span></td>
+                    <td>
+                        <div class="col-sm-8">
+                            <textarea class="form-control" rows="3" maxlength="500" name="website_close_text"><?php echo $this->configList['website_close_text'];?></textarea>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="panel-heading"><span class="glyphicon glyphicon-cog"></span> 网站SEO配置</div>
+    <div class="panel-body">
+        <table class="table table-bordered table-striped">
+            <tbody>
+                <tr>
+                    <td width="300"><strong>META-关键词：</strong><br/><span class="help-block">请输入网站首页关键词，该内容将显示在网站首页&lt;META&nbsp;name="keyword"&gt;代码中</span></td>
+                    <td>
+                        <div class="col-sm-8">
+                            <input value="<?php echo $this->configList['website_meta_keywords'];?>" name="website_meta_keywords" type="text" class="form-control" maxlength="100"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="300"><strong>META-备　注：</strong><br/><span class="help-block">请输入网站首页关键词，该内容将显示在网站首页&lt;META&nbsp;name="description"&gt;代码中</span></td>
+                    <td>
+                        <div class="col-sm-8">
+                            <input value="<?php echo $this->configList['website_meta_descript'];?>" name="website_meta_descript" type="text" class="form-control" maxlength="100"/>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="panel-heading"><span class="glyphicon glyphicon-cog"></span> 附件上传配置</div>
+    <div class="panel-body">
+        <table class="table table-bordered table-striped">
+            <tbody>
+                <tr>
+                    <td width="300"><strong>访问根路径：</strong><br/><span class="help-block">请输入附件访问根路径；例如：/attachments</span></td>
+                    <td>
+                        <div class="col-sm-8">
+                            <input value="<?php echo $this->configList['attachment_hostname'];?>" name="attachment_hostname" type="text" class="form-control" maxlength="100"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="300"><strong>存储根路径：</strong><br/><span class="help-block">请输入附件在服务器上的存储根路径</span></td>
+                    <td>
+                        <div class="col-sm-8">
+                            <input value="<?php echo $this->configList['attachment_rootpath'];?>" name="attachment_rootpath" type="text" class="form-control" maxlength="100"/>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="panel-heading"><span class="glyphicon glyphicon-cog"></span> 访问统计设置</div>
+    <div class="panel-body">
+        <table class="table table-bordered table-striped">
+            <tbody>
+                <tr>
+                    <td width="300"><strong>访问统计代码：</strong><br/><span class="help-block">请输访问统计代码；代码内容请咨询统计服务提供商</span></td>
+                    <td>
+                        <div class="col-sm-8">
+                            <textarea class="form-control" rows="3" maxlength="500" name="website_visit_analytics"><?php echo $this->configList['website_visit_analytics'];?></textarea>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="panel-body">
+        <a id="setting-replace-button" class="btn btn-warning">修改配置</a>
+    </div>
+</div>
+</form>
+<p class="text-center">
+    Powered&nbsp;By&nbsp;<a href="https://github.com/NoteYun/MountainKing" target="_blank">MountainKing</a>&nbsp;2012-<?php echo date("Y");?>&nbsp;&copy;&nbsp;<a href="http://noteyun.com/" target="_blank">NoteYun.COM</a>
+</p>
+</body>
+<script type="text/javascript">
+$("#setting-replace-button").click(function () {
+    $.ajax({
+        data:$("#setting-replace-form").serialize(),
+        type:"post",
+        url:"<?php echo $this->url(array("module" => "admin", "controller" => "controlpanel", "action" => "setting"), null, true);?>",
+        success:function (transport) {
+            var response = jQuery.parseJSON(transport);
+            if (response.flag == false) {
+                $.dialog({
+                    "argvCallback":function () {
+                    },
+                    "argvElement":"replaceSettingDialog",
+                    "argvWidth":350,
+                    "argvHeight":75,
+                    "argvMessage":response.text
+                });
+                return false;
+            } else {
+                $.dialog({
+                    "argvCallback":function () {
+                    },
+                    "argvElement":"replaceSettingDialog",
+                    "argvWidth":350,
+                    "argvHeight":75,
+                    "argvMessage":"修改成功，您已经成功修改网站配置信息"
+                });
+                return true;
+            }
+        }
+    });
+});
+</script>
+</html>

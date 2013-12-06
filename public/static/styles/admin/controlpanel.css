@@ -1,6 +1,5 @@
 body, button, input, select, textarea {
     font-family: "Times New Roman", Tahoma, SimSun, Arial;
-    font-size: 14px;
     color: #333333;
     overflow-y: scroll;
 }
@@ -277,7 +276,11 @@ body.navbar-fixed {padding-top: 50px;}
 }
 
 .panel-body {
-    padding-top:25px;
+    padding-top: 25px;
+}
+
+.table>tbody * {
+    font-size: 12px;
 }
 
 .table-bordered>thead>tr>th, 
